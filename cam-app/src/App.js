@@ -6,7 +6,6 @@ function App() {
   return (
     <div className="App">
       <WebcamComponent />
-      {/* <input accept="image/*" id="icon-button-file" type="file" capture="environment" /> */}
     </div>
   );
 }
