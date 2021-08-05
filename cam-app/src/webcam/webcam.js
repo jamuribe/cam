@@ -10,6 +10,20 @@ const WebcamComponent = () => {
     setImgSrc(imageSrc);
   }, [webcamRef, setImgSrc]);
 
+  const handleDownload = useCallback(() => {
+    if (imgSrc) {
+      const image = document.querySelector('img');
+      const a = document.createElement('a');
+      a.href = image.src
+      a.download = "imagename.jpg";
+      a.click();
+      document.body.appendChild(a);
+      setImgSrc(null);
+    }
+  },
+    [imgSrc],
+  );
+
   return (
     <>
       <Webcam
@@ -18,7 +32,12 @@ const WebcamComponent = () => {
         screenshotFormat="image/jpeg"
       />
       <button onClick={capture}> Capture photo</button>
-      {imgSrc && (<img src={imgSrc} />)}
+      {imgSrc && (
+        <img alt="" src={imgSrc} />
+      )}
+      {imgSrc && (
+        <button onClick={handleDownload}>Download</button>
+      )}
     </>
   )
 };
